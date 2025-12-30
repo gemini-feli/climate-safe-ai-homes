@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>SafetyNet Hub</title>
+	<style>
+	*{box-sizing:border-box}html,body{margin:0;padding:0}
+	body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f6fff7;color:#074003;line-height:1.6}
+	.container{max-width:1120px;margin:0 auto;padding:0 24px}.center{text-align:center}
+	.topbar{position:sticky;top:0;z-index:40;background:#ffffffe6;backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid #e5f2e8}
+	.row{display:flex;align-items:center;justify-content:space-between;height:64px}
+	.brand{display:flex;gap:12px;align-items:center}
+	.brand-icon{width:50px;height:50px;border-radius:10px;background:#29dd6b;color:#fff;display:grid;place-items:center}
+	.brand-name{font-weight:700}.brand-tag{font-size:12px;color:#5f7664}
+	.nav{display:flex;gap:16px}.nav-item{padding:8px 10px;border-radius:8px;color:#2f3e37}
+	.nav-item.active{background:#dcfce7;color:#065f46;font-weight:600}
+	.actions{display:flex;gap:10px;align-items:center}.dot{width:50px;height:50px;border-radius:999px;background:#22c55e}
+	.circle{width:34px;height:34px;border-radius:10px;background:#ecfdf5}
+	.hero{background:#22c55e;color:#fff;padding:64px 0}.hero-title{font-size:44px;margin:0 0 12px}
+	.hero-lead{max-width:780px;margin:0 auto 28px;color:#dbeafe}
+	.stats{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+	.stat{background:rgba(255,255,255,.14);backdrop-filter:saturate(160%) blur(6px);padding:14px 22px;border-radius:12px;text-align:center}
+	.stat-num{font-size:28px;font-weight:800}.stat-label{font-size:13px;color:#dbeafe}
+	.banner{background:linear-gradient(90deg,#ecfdf5,#f0f9ff);padding:28px 0;border-top:1px solid #d1fae5;border-bottom:1px solid #dbeafe}
+	.banner--slim{padding:20px 0}.banner__inner{display:flex;align-items:center;gap:24px}
+	.banner__text{flex:1}.banner__eyebrow{font-size:12px;font-weight:800;color:#047857;letter-spacing:.08em;text-transform:uppercase}
+	.banner__title{margin:6px 0 4px;font-size:22px;color:#064e3b}.banner__sub{margin:0;color:#335a52}
+	.banner__image {
+    width: 300px;       /* reduced width to make it more portrait */
+    max-width: 30%;     /* adjust as needed */
+    height: 400px;      /* increased height for portrait look */
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(4,120,87,.15);
+}
+
+.banner__image img {
+    width: 100%;
+    height: 100%;       /* fill the container */
+    object-fit: cover;  /* ensures image fills container without distortion */
+    display: block;
+}
+.banner__eyebrow {
+  font-size: 18px; /* increased from 12px */
+  font-weight: 900; /* extra bold */
+  color: #047857;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+
+	.section{padding:48px 0;background:#f0fff4;border-top:1px solid #e3f7ea}
+	.section+.section{border-top:none}.section-title{margin:0 0 8px;font-size:26px;color:#064e3b}
+	.section-sub{margin:0 0 22px;color:#5f7664}
+	.row-cards{display:flex;gap:18px;align-items:stretch;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;margin:0 -6px;padding-left:6px}
+	.row-cards::-webkit-scrollbar{height:10px}.row-cards::-webkit-scrollbar-thumb{background:#bbf7d0;border-radius:999px}
+	.row-cards>*{scroll-snap-align:start;flex:0 0 320px}
+	.card,.info,.ngo{background:#fff;border:1px solid #e6f5ec;border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(3,84,63,.06);transition:transform .18s,box-shadow .18s,border-color .18s,background .18s}
+	.card:hover,.info:hover,.ngo:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(34,197,94,.18);border-color:#bbf7d0;background:#fbfffc}
+	.card-media{position:relative;height:220px;background:#e5f5ea}.card-media img{width:100%;height:100%;object-fit:fit;display:block}
+	.badge{position:absolute;top:12px;right:12px;color:#fff;padding:6px 10px;border-radius:999px;font-size:12px}
+	.badge-danger{background:#ef4444}.badge-warn{background:#f59e0b}.badge.soft{background:rgba(15,23,42,.7)}
+	.card-body{padding:18px}.card-title{margin:8px 0 6px;font-size:18px}.card-text{margin:0 0 10px;color:#5f7664}
+	.chip{display:inline-block;background:#dcfce7;color:#065f46;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
+	.list{margin:0 0 10px 18px;padding:0}.list li{list-style:disc;margin:6px 0;color:#0f172a}
+	.fake-link{color:#16a34a;font-weight:700;font-size:14px}
+	.alert{display:flex;gap:16px;align-items:center;justify-content:space-between;background:#fff7f7;border:1px solid #fed7d7;border-radius:16px;padding:16px 18px;color:#991b1b;margin-bottom:20px}
+	.alert-icon{width:36px;height:36px;border-radius:10px;background:#ef4444;color:#fff;display:grid;place-items:center;font-weight:800}
+	.alert-title{font-weight:800;margin-bottom:4px}
+	.btn{background:#22c55e;color:#0b291e;border-radius:10px;padding:12px 18px;font-weight:800;user-select:none;box-shadow:0 6px 16px rgba(34,197,94,.25)}
+	.btn:active{transform:translateY(1px)}
+	.info{padding:18px}.info-title{margin:8px 0 6px;font-size:18px}.muted{color:#5f7664}.tiny{font-size:12px}
+	.chip.soft{background:#ecfdf5;color:#065f46}.callbox{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:12px;margin:10px 0}
+	.call-num{font-weight:800;font-size:20px}
+	.ngo-media{position:relative;height:200px;background:#e5f5ea}.ngo-media img{width:100%;height:100%;object-fit:fit;display:block}
+	.ngo-title{margin:14px 16px 6px;font-size:18px}.ngo p{margin:0 16px 16px}
+	.footer{background:#0b1220;color:#e5e7eb;padding:44px 0;border-top:1px solid #0f1a2e}
+	.footer-brand{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:12px}
+	.homebox{background:#22c55e;color:#052e1f;border-radius:12px;width:36px;height:36px;display:grid;place-items:center}
+	.footer-title{font-weight:700}.footer-text{max-width:760px;margin:0 auto 16px;color:#c7d2fe;text-align:center}
+	.divider{height:1px;background:#19253a;margin:16px auto;width:100%}
+	</style>
+</head>
+<body>
+	<header class="topbar">
+		<div class="container row">
+			<div class="brand">
+				<div class="brand-icon">
+  <img src="./images/ClimaNest.jpeg" alt="Brand Icon" style="width: 40px; height: 40px;">
+</div>
+
+				<div>
+					<div class="brand-name">ClimaNest</div>
+					<div class="brand-tag">Safer surrounding, safer lives</div>
+				</div>
+			</div>
+			<nav class="nav">
+				<div class="nav-item">Home</div>
+				<div class="nav-item active">SafetyNet Hub</div>
+				<div class="nav-item">SafeHomeHub</div>
+				<div class="nav-item">Chat with AI</div>
+			</nav>
+		
+	</header>
+
+	<section class="hero">
+		<div class="container center">
+			<h1 class="hero-title">SafetyNet Hub</h1>
+			<p class="hero-lead">Your comprehensive resource center for climate disaster preparedness, emergency response, and community support networks to keep your home and family safe.</p>
+			<div class="stats">
+				<div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Emergency Support</div></div>
+				<div class="stat"><div class="stat-num">50+</div><div class="stat-label">Safety Guidelines</div></div>
+				<div class="stat"><div class="stat-num">100+</div><div class="stat-label">Partner Organizations</div></div>
+			</div>
+		</div>
+	</section>
+<section class="banner">
+  <div class="container banner__inner">
+    <div class="banner__text">
+      <div class="banner__eyebrow">Be Ready</div>
+      <h1 class="banner__title">Small steps today prevent big losses tomorrow</h1>
+      <p class="banner__sub">
+        Save contacts, check supplies, and review your family plan.
+      </p>
+      <p class="banner__sub">
+        Stay updated with official emergency alerts:
+      </p>
+      <ul class="alert-links">
+        <li>
+          <a href="https://sachet.ndma.gov.in/" target="_blank" class="alert-link">SACHET Portal</a> – Official disaster alerts from NDMA
+        </li>
+        <li>
+          <a href="https://play.google.com/store/apps/details?id=com.cdotindia.capsachet" target="_blank" class="alert-link">SACHET App (Android)</a> – Real-time alerts and safety tips
+        </li>
+        <li>
+          <a href="https://apps.apple.com/in/app/sachet/id6443882278" target="_blank" class="alert-link">SACHET App (iOS)</a> – Stay informed during emergencies
+        </li>
+        <li>
+          <a href="https://www.ndrf.gov.in/" target="_blank" class="alert-link">National Disaster Response Force (NDRF)</a> – Rescue and relief operations
+        </li>
+        <li>
+          <a href="https://prasarbharati.gov.in/doordarshan/" target="_blank" class="alert-link">Doordarshan</a> – National broadcaster for emergency information
+        </li>
+      </ul>
+    </div>
+    <div class="banner__image">
+      <img src="images/preparedness.jpg" alt="Preparedness">
+    </div>
+  </div>
+</section>
+
+
+	<section class="section">
+		<div class="container">
+			<h2 class="section-title">Home Safety Tips</h2>
+			<p class="section-sub">Essential safety measures to protect your home and family from climate-related disasters</p>
+			<div class="row-cards">
+				<article class="card">
+					<div class="card-media"><img src="images/flood1.jpg" alt="Flood"><div class="badge badge-danger">High Priority</div></div>
+					<div class="card-body">
+						<div class="chip">Floods</div>
+						<h3 class="card-title">Flood Safety Measures</h3>
+						<p class="card-text">Essential tips to protect your home and family during flooding</p>
+						<ul class="list">
+							<li>Install flood barriers and sandbags around entry points</li>
+							<li>Keep emergency supplies on higher floors</li>
+							<li>Ensure drainage systems are clear and functional</li>
+                            <li>Secure your home by moving valuables to higher floors and sealing doors and windows</li>
+                            <li>Check that your home insurance covers flood damage</li>
+						</ul>
+						
+				</article>
+
+				<article class="card">
+					<div class="card-media"><img src="images/heatwave1.jpg" alt="Heatwave"><div class="badge badge-warn">Medium Priority</div></div>
+					<div class="card-body">
+						<div class="chip">Heatwaves</div>
+						<h3 class="card-title">Heatwave Protection</h3>
+						<p class="card-text">Keep your home cool and safe during extreme heat events</p>
+						<ul class="list">
+							<li>Install reflective window films and proper insulation</li>
+							<li>Use fans and air conditioning efficiently</li>
+							<li>Create cool zones with adequate ventilation</li>
+                            <li>Ensure adequate ventilation and avoid using heat-generating appliances during peak hours</li>
+                            <li>Limit outdoor activities, especially during peak heat hours</li>
+						</ul>
+						
+				</article>
+
+				<article class="card">
+					<div class="card-media"><img src="images/landslide1.jpg" alt="Landslide"><div class="badge badge-danger">High Priority</div></div>
+					<div class="card-body">
+						<div class="chip">Landslides</div>
+						<h3 class="card-title">Landslide Preparedness</h3>
+						<p class="card-text">Protect your property from slope failures and ground movement</p>
+						<ul class="list">
+							<li>Install proper drainage to redirect water away from slopes</li>
+							<li>Plant vegetation to stabilize soil</li>
+							<li>Monitor for warning signs like cracks or tilting</li>
+                            <li>Monitor local news and disaster alerts continuously</li>
+                            <li>Avoid building or staying near steep slopes, riverbanks, or unstable terrain</li>
+						</ul>
+						
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+    <div class="container">
+        <h2 class="section-title">Emergency Hub</h2>
+        <p class="section-sub">Critical contact information for emergency response and rescue services during disasters</p>
+        <div class="alert">
+            <div class="alert-icon">!</div>
+            <div class="alert-body">
+                <div class="alert-title">Emergency Alert</div>
+                <div>For immediate life-threatening emergencies, call <b>112</b> - India's unified emergency helpline</div>
+            </div>
+            <div class="btn">DIAL 112 NOW</div>
+        </div>
+        <div class="row-cards">
+            <a href="https://ndrf.gov.in" target="_blank">
+                <article class="info">
+                    <div class="chip soft">Government</div>
+                    <h3 class="info-title">National Disaster Response Force (NDRF)</h3>
+                    <p class="muted">24/7 disaster response and rescue operations</p>
+                    <div class="callbox">
+                        <div class="call-num">1078</div>
+                        <div class="muted tiny">Tap to call</div>
+                    </div>
+                </article>
+            </a>
+
+            <a href="https://www.112.gov.in" target="_blank">
+                <article class="info">
+                    <div class="chip soft">Emergency</div>
+                    <h3 class="info-title">Emergency Services</h3>
+                    <p class="muted">Unified emergency helpline for all services</p>
+                    <div class="callbox">
+                        <div class="call-num">112</div>
+                        <div class="muted tiny">Tap to call</div>
+                    </div>
+                </article>
+            </a>
+
+            <a href="https://www.mhada.gov.in/en/disaster-management/fire-brigade-station" target="_blank">
+                <article class="info">
+                    <div class="chip soft">Fire</div>
+                    <h3 class="info-title">Fire &amp; Rescue Services</h3>
+                    <p class="muted">Fire emergencies and rescue operations</p>
+                    <div class="callbox">
+                        <div class="call-num">101</div>
+                        <div class="muted tiny">Tap to call</div>
+                    </div>
+                </article>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+	<section class="banner banner--slim">
+		<div class="container banner__inner">
+			<div class="banner__text">
+				<div class="banner__eyebrow">Community</div>
+				<h2 class="banner__title">Together, we build resilience</h2>
+				<p class="banner__sub">Connect with trusted organizations and neighbors.</p>
+			</div>
+			<div class="banner__image"><img src="images/banner2.jpg" alt="Community"></div>
+		</div>
+	</section>
+
+	<section class="section">
+    <div class="container">
+        <h2 class="section-title">NGO Partners</h2>
+        <p class="section-sub">Trusted humanitarian organizations working towards disaster relief and climate resilience</p>
+        <div class="row-cards">
+
+            <a href="https://www.indianredcross.org/" target="_blank" class="ngo-link">
+                <article class="ngo">
+                    <div class="ngo-media">
+                        <img src="images/redcross.jpg" alt="Indian Red Cross">
+                        <div class="badge soft">Est. 1920</div>
+                    </div>
+                    <h3 class="ngo-title">Indian Red Cross Society</h3>
+                    <div class="muted tiny">Pan India</div>
+                    <p class="muted">Humanitarian services, disaster relief, and emergency response across India.</p>
+                </article>
+            </a>
+
+            <a href="https://www.oxfamindia.org/" target="_blank" class="ngo-link">
+                <article class="ngo">
+                    <div class="ngo-media">
+                        <img src="images/oxfam.jpg" alt="Oxfam India">
+                        <div class="badge soft">Est. 1951</div>
+                    </div>
+                    <h3 class="ngo-title">Oxfam India</h3>
+                    <div class="muted tiny">Pan India</div>
+                    <p class="muted">Fighting inequality and injustice with focus on climate resilience and disaster preparedness.</p>
+                </article>
+            </a>
+
+            <a href="https://careifoundation.org/" target="_blank" class="ngo-link">
+                <article class="ngo">
+                    <div class="ngo-media">
+                        <img src="images/care.jpg" alt="CARE India">
+                        <div class="badge soft">Est. 1950</div>
+                    </div>
+                    <h3 class="ngo-title">CARE India</h3>
+                    <div class="muted tiny">Pan India</div>
+                    <p class="muted">Emergency response and climate adaptation programs.</p>
+                </article>
+            </a>
+
+            <a href="https://www.actionaidindia.org/" target="_blank" class="ngo-link">
+                <article class="ngo">
+                    <div class="ngo-media">
+                        <img src="images/actionaid.jpg" alt="ActionAid">
+                        <div class="badge soft">Est. 1972</div>
+                    </div>
+                    <h3 class="ngo-title">ActionAid India</h3>
+                    <div class="muted tiny">Pan India</div>
+                    <p class="muted">Building resilience against disasters and climate change impacts.</p>
+                </article>
+            </a>
+
+            <a href="https://www.worldvision.in/" target="_blank" class="ngo-link">
+                <article class="ngo">
+                    <div class="ngo-media">
+                        <img src="images/worldvision.jpg" alt="World Vision">
+                        <div class="badge soft">Est. 1958</div>
+                    </div>
+                    <h3 class="ngo-title">World Vision India</h3>
+                    <div class="muted tiny">Pan India</div>
+                    <p class="muted">Child-focused relief and disaster risk reduction.</p>
+                </article>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+	<footer class="footer">
+		<div class="container center">
+			<div class="footer-brand"><div class="homebox">🏠</div><div><div class="footer-title">AI Safe Homes</div><div class="muted tiny">SafetyNet Hub</div></div></div>
+			<p class="footer-text">Empowering communities with AI-driven climate safety solutions. Together, we build resilient homes and safer futures for everyone.</p>
+			<div class="divider"></div>
+			<div class="muted tiny">Building Vision into Reality | Emergency: 112 | NDRF: 1078</div>
+		</div>
+	</footer>
+</body>
+</html>    

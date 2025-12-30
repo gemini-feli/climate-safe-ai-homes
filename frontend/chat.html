@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Safe Climate Home</title>
+  <link rel="stylesheet" href="./css/chat.css"/>
+</head>
+<body class="climate-page">
+
+  <!-- Header -->
+  <header class="climate-header">
+    <img src="./images/ClimaNest.jpeg" alt="Home" class="header-icon"/>
+    <h1> ClimaNest</h1>
+    <p>Upload images of your surroundings and get AI-powered solutions to make your surrounding safer and more climate-resilient.</p>
+  </header>
+
+  <!-- Main Box -->
+  <main class="climate-box">
+    <div class="climate-grid">
+
+      <!-- Upload Section -->
+      <div class="upload-drop" id="dropZone">
+        <img src="./images/cloud.png" alt="Cloud Upload" class="upload-icon"/>
+        <p><strong>Drag & drop your images here</strong></p>
+        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+        <p class="browse">or 
+          <a href="#" onclick="document.getElementById('fileInput').click(); return false;">
+            click to browse files
+          </a>
+        </p>
+        <div id="filePreview" class="file-preview"></div>
+      </div>
+
+      <div class="info">
+        <img src="./images/suggestions.png" alt="Info" class="info-icon"/>
+        <p>We analyze images for safety risks and climate vulnerabilities</p>
+      </div>
+    </div>
+
+    <!-- Concerns Section -->
+    <div class="concern-section">
+      <h2><img src="./images/smartidea.png" alt="Chat" class="icon"/> Describe Your Concerns</h2>
+      <p class="subtext">Tell us what safety or climate issues you're facing</p>
+
+      <div class="form-group">
+        <label for="location"><img src="./images/safeloc.png" class="icon-small"/> Your Location (optional)</label>
+        <input type="text" id="location" placeholder="City, Country"/>
+      </div>
+
+      <div class="form-group">
+        <label for="prompt"><img src="./images/smartai.png" class="icon-small"/> Your Prompt</label>
+        <textarea id="prompt" rows="4" placeholder="Example: “Flood water entered school building, What should I do?”"></textarea>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" id="recommendations"/>
+        <label for="recommendations">Include climate-specific recommendations</label>
+      </div>
+
+      <button class="submit-btn" id="sendBtn">
+        <img src="./images/clisend.png" alt="AI"/> Get AI-Powered Solutions
+      </button>
+
+      <!-- ✅ Chat Box to show messages -->
+      <div id="chatBox" class="chat-box"></div>
+    </div>
+
+  </main>
+
+  <!-- Decorative Icons -->
+  <img src="./images/leaf.png" alt="Leaf" class="leaf-icon top-left"/>
+  <img src="./images/leaf.png" alt="Leaf" class="leaf-icon bottom-right"/>
+
+  <!-- Prompt Examples -->
+  <section class="prompt-section">
+    <div class="prompt-header">
+      <img src="./images/bulb.png" alt="Lightbulb" class="prompt-icon"/>
+      <h2>Prompt Examples</h2>
+    </div>
+
+    <div class="prompt-grid">
+      <div class="prompt-card">
+        <h3>"How can I make my campus more resistant to flooding?"</h3>
+        <p>Upload photos of your gargen or yard</p>
+      </div>
+      <div class="prompt-card">
+        <h3>"Suggest fire-safe landscaping for my dry climate"</h3>
+        <p>Include images of your current garden</p>
+      </div>
+      <div class="prompt-card">
+        <h3>"Recommend energy-efficient improvements for my old windows"</h3>
+        <p>Show close-ups of window frames</p>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="./js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+/* General Page Setup */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f6f8fa;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e3a8a;
+  color: white;
+  padding: 10px 20px;
+}
+
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between logo and text */
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column; /* stack title and tagline vertically */
+  line-height: 1.2;
+}
+
+.logo-section h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.logo-section .tagline {
+  font-size: 0.8rem;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.logo-section h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.logo-section .tagline {
+  font-size: 0.8rem;
+  display: block;
+}
+
+.nav-icons img {
+  width: 30px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* Welcome Card */
+.welcome-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  margin: 20px;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.user-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.welcome-card h2 {
+  margin: 0;
+}
+
+.welcome-card p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.badges {
+  margin-top: 5px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  margin-right: 5px;
+}
+
+.verified {
+  background: #22c55e;
+  color: white;
+}
+
+.protected {
+  background: #3b82f6;
+  color: white;
+}
+
+/* Climatic Alerts */
+.alert-card {
+  background: white;
+  margin: 20px;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.alert-card h3 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.alert-card h3 img {
+  width: 24px;
+  margin-right: 8px;
+}
+
+.alert-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.alert-card li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.alert-card li img {
+  width: 40px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.alert-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-text strong {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.alert-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+
+.view-all {
+  display: block;
+  text-align: right;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+/* Location Card */
+.location-card {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  margin: 20px;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.location-card h3 {
+  margin-top: 0;
+}
+
+.location-card p {
+  display: flex;
+  align-items: center;
+}
+
+.location-card img {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.weather-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Safety Stats */
+.safety-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px;
+}
+
+.stat {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.green { border-top: 4px solid #22c55e; }
+.blue { border-top: 4px solid #3b82f6; }
+.yellow { border-top: 4px solid #eab308; }
+.purple { border-top: 4px solid #8b5cf6; }
+
+/* Quick Actions */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px;
+}
+
+.action {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.action img {
+  width: 50px;
+  margin-bottom: 8px;
+}
+
+/* Recent Activity */
+.recent-activity {
+  background: white;
+  margin: 20px;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.recent-activity ul {
+  list-style: none;
+  padding: 0;
+}
+
+.recent-activity li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.recent-activity li img {
+  width: 24px;
+  margin-right: 8px;
+}
+
+.recent-activity span {
+  font-size: 0.75rem;
+  color: #888;
+  margin-left: auto;
+}
+.nav-icons {
+  display: flex;           /* important */
+  flex-direction: row;     /* row not column */
+  align-items: center;     /* vertically center them */
+  gap: 15px;               /* space between icons */
+}
+
+.nav-icon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+/* badge dot */
+.icon-badge {
+  position: relative;
+  display: inline-block;
+}
+
+.badge-dot {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+
+.quick-actions {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  gap: 20px; /* spacing between cards */
+}
+
+.action {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.action:hover {
+  transform: translateY(-3px);
+}
+
+.action img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.action-icon.orange {
+  border-top: 3px 
+}
+/* Weather popup animation levels */
+.weather-popup.info {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+.weather-popup.warning {
+  background: linear-gradient(135deg, #eab308, #f59e0b);
+}
+.weather-popup.danger {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+.weather-popup.success {
+  background: linear-gradient(135deg, #22c55e, #15803d);
+}
+
+.weather-popup {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  color: white;
+  padding: 16px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 9999;
+  min-width: 250px;
+}

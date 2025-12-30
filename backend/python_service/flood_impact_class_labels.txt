@@ -1,0 +1,5 @@
+High Impact
+Low Impact
+Normal Houses
+Train
+Validation

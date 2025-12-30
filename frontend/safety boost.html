@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>SafeScore Boost</title>
+	<style>
+		:root{
+			--green:#06c167;
+			--green-700:#079e55;
+			--green-800:#0a7f46;
+			--line:#bfe8ca;
+			--soft:#f6fff9;
+			--gray-2:#9aa3af;
+			--card:#ffffff;
+			--radius:16px;
+		}
+		*{box-sizing:border-box}
+		body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:#fff;color:#0f172a}
+		.container{max-width:1180px;margin:0 auto;padding:28px 18px}
+		.center{text-align:center}
+		h1{font-size:40px;margin:8px 0}
+		p{margin:0 0 10px}
+		.header-sub{font-size:18px;color:#1f3d2b}
+		.header-note{font-size:18px;color:#0a7f46}
+		.row{display:flex;align-items:center}
+		.row-between{justify-content:space-between}
+		.grid{display:grid;gap:20px}
+		.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+		.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+		.grid-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+		@media (max-width:1100px){.grid-5{grid-template-columns:repeat(3,1fr)}}
+		@media (max-width:840px){.grid-2,.grid-3,.grid-5{grid-template-columns:1fr}}
+		.icon{width:26px;height:26px;color:#0a7f46;flex:0 0 auto}
+		.icon-lg{width:42px;height:42px}
+		.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 18px rgba(4,120,87,.06)}
+		.card.pad{padding:22px}
+		.soft{background:var(--soft)}
+		.big{font-size:40px;font-weight:800;color:#0a7f46}
+		.small{font-size:14px;color:#1f3d2b}
+		.progress{width:100%;height:14px;border-radius:999px;background:#d1d5db;position:relative;overflow:hidden}
+		.progress > span{position:absolute;inset:0;width:64%;background:#0d1220}
+		.progress-legend{display:flex;justify-content:space-between;font-size:15px;color:#1f3d2b;margin-top:8px}
+		.badge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;color:#0a7f46;background:#fff}
+		.badge-high{border-color:#ffb3c2;background:#ffe6eb;color:#b3122f}
+		.badge-med{border-color:#f4e79d;background:#fbf3c6;color:#7a5d06}
+		.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:14px;border:0;border-radius:12px;background:var(--green);color:#fff;font-weight:800;cursor:pointer;text-decoration:none}
+		.btn:hover{background:var(--green-700)}
+		.tile{text-align:center;padding:26px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04);text-decoration:none;color:inherit;display:block}
+		.tile h3{margin:10px 0 8px}
+		.tile p{color:#1f3d2b}
+		.item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:12px;background:#f0fdf4}
+		.hr{border-top:1px solid #e6f6ec;margin:16px 0}
+		.section-title{display:flex;align-items:center;gap:10px;font-size:28px;margin:6px 0 14px}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- Header -->
+		<div class="center">
+			<div class="row" style="justify-content:center;gap:8px">
+				<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+				<h1>SafeScore Boost</h1>
+			</div>
+			<p class="header-sub">Turn your home into a safer, smarter, and disaster‑ready space while saving money.</p>
+			<p class="header-note">Book trusted services. Improve your score. Stay resilient.</p>
+		</div>
+
+		<!-- Score panel -->
+		<div class="card soft" style="margin-top:18px">
+			<div class="card pad">
+				<div class="row" style="gap:8px;color:#0a7f46;font-weight:700;margin-bottom:14px">
+					<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21a9 9 0 1 0-9-9"/><path d="M12 17a5 5 0 1 0-5-5"/><path d="M12 13a1 1 0 1 0-1-1"/></svg>
+					<span>Your Safety Score Progress</span>
+				</div>
+				<div class="row row-between" style="margin-bottom:12px">
+					<div>
+						<div class="big">480</div>
+						<div class="small">Current Score</div>
+					</div>
+					<svg class="icon" style="color:#9aa3af" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+					<div style="text-align:right">
+						<div class="big">750</div>
+						<div class="small">Target Score</div>
+					</div>
+				</div>
+				<div class="progress"><span></span></div>
+				<div class="progress-legend">
+					<span>Current Progress: 64%</span>
+					<span>+270 points to target</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Personalized Recommendations -->
+		<div style="margin-top:24px">
+			<div class="section-title">
+				<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18A2 2 0 0 0 3.53 21h16.94A2 2 0 0 0 22.18 18L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+				<span>Personalized Recommendations</span>
+			</div>
+
+			<div class="grid grid-2">
+				<!-- Card 1 -->
+				<div class="card">
+					<div class="card pad">
+						<div class="row row-between">
+							<div>
+								<h3 style="margin:0 0 6px">Fix Drainage System</h3>
+								<p style="color:#2c3e33">Blocked drainage increases flood risk</p>
+							</div>
+							<span class="badge badge-high">High</span>
+						</div>
+						<div class="row row-between" style="margin:12px 0">
+							<span class="badge">Plumbing</span>
+							<div class="row" style="gap:6px;color:#0a7f46;font-weight:700">
+								<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+								<span>+200 points</span>
+							</div>
+						</div>
+						<p style="color:#2c3e33">Estimated Cost: ₹15,000 - ₹25,000</p>
+						<a class="btn" href="providers.html#plumbing">Book Service</a>
+					</div>
+				</div>
+
+				<!-- Card 2 -->
+				<div class="card">
+					<div class="card pad">
+						<div class="row row-between">
+							<div>
+								<h3 style="margin:0 0 6px">Electrical Wiring Audit</h3>
+								<p style="color:#2c3e33">Old wiring poses fire hazard</p>
+							</div>
+							<span class="badge badge-med">Medium</span>
+						</div>
+						<div class="row row-between" style="margin:12px 0">
+							<span class="badge">Electrical</span>
+							<div class="row" style="gap:6px;color:#0a7f46;font-weight:700">
+								<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+								<span>+150 points</span>
+							</div>
+						</div>
+						<p style="color:#2c3e33">Estimated Cost: ₹8,000 - ₹12,000</p>
+						<a class="btn" href="providers.html#electrical">Book Service</a>
+					</div>
+				</div>
+
+				<!-- Card 3 -->
+				<div class="card">
+					<div class="card pad">
+						<div class="row row-between">
+							<div>
+								<h3 style="margin:0 0 6px">Install Fire Extinguisher</h3>
+								<p style="color:#2c3e33">Missing fire safety equipment</p>
+							</div>
+							<span class="badge badge-med">Medium</span>
+						</div>
+						<div class="row row-between" style="margin:12px 0">
+							<span class="badge">Fire Safety</span>
+							<div class="row" style="gap:6px;color:#0a7f46;font-weight:700">
+								<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+								<span>+100 points</span>
+							</div>
+						</div>
+						<p style="color:#2c3e33">Estimated Cost: ₹2,000 - ₹5,000</p>
+						<a class="btn" href="providers.html#fire">Book Service</a>
+					</div>
+				</div>
+
+				<!-- Card 4 -->
+				<div class="card">
+					<div class="card pad">
+						<div class="row row-between">
+							<div>
+								<h3 style="margin:0 0 6px">Structural Safety Check</h3>
+								<p style="color:#2c3e33">Foundation assessment needed</p>
+							</div>
+							<span class="badge badge-high">High</span>
+						</div>
+						<div class="row row-between" style="margin:12px 0">
+							<span class="badge">Structural</span>
+							<div class="row" style="gap:6px;color:#0a7f46;font-weight:700">
+								<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+								<span>+180 points</span>
+							</div>
+						</div>
+						<p style="color:#2c3e33">Estimated Cost: ₹10,000 - ₹18,000</p>
+						<a class="btn" href="providers.html#structural">Book Service</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Book Verified Services -->
+		<div style="margin-top:26px">
+			<div class="section-title">
+				<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4l8 8a3 3 0 1 0 4.2-4.2l-8-8z"/><path d="M8 8h.01"/></svg>
+				<span>Book Verified Services</span>
+			</div>
+
+			<div class="grid grid-5">
+				<a class="tile" href="providers.html#plumbing">
+					<svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4l8 8a3 3 0 1 0 4.2-4.2l-8-8z"/><path d="M8 8h.01"/></svg>
+					<h3>Plumbing</h3>
+					<p>Drainage, pipes, water systems</p>
+					<span class="badge">24 providers</span>
+				</a>
+				<a class="tile" href="providers.html#electrical">
+					<svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+					<h3>Electrical</h3>
+					<p>Wiring, safety audits, repairs</p>
+					<span class="badge">18 providers</span>
+				</a>
+				<a class="tile" href="providers.html#fire">
+					<svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 14a4 4 0 1 0 8 0c0-3-2-5-4-8-2 3-4 5-4 8z"/></svg>
+					<h3>Fire Safety</h3>
+					<p>Equipment, alarms, inspections</p>
+					<span class="badge">12 providers</span>
+				</a>
+				<a class="tile" href="providers.html#structural">
+					<svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-7 9 7"/><path d="M9 22V12h6v10"/></svg>
+					<h3>Structural</h3>
+					<p>Foundation, walls, roof checks</p>
+					<span class="badge">15 providers</span>
+				</a>
+				<a class="tile" href="providers.html#kits">
+					<svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73L13 2.27a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4.05a2 2 0 0 0 2 0l7-4.05A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12l8.73-5.04"/><path d="M12 22V12"/></svg>
+					<h3>Emergency Kits</h3>
+					<p>Disaster preparedness supplies</p>
+					<span class="badge">8 providers</span>
+				</a>
+			</div>
+		</div>
+
+		<!-- Two-up: Improvements + Insurance -->
+		<div class="grid grid-2" style="margin-top:24px">
+			<div class="card">
+				<div class="card pad">
+					<div class="row" style="gap:8px;color:#0a7f46;font-weight:700;margin-bottom:10px">
+						<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+						<span>Recent Improvements</span>
+					</div>
+					<div class="item">
+						<div>
+							<div style="font-weight:700">Smoke Detector Installation</div>
+							<div style="color:#2c3e33;font-size:14px">Completed 2 days ago</div>
+						</div>
+						<div style="color:#0a7f46;font-weight:800">+80 points</div>
+					</div>
+					<div class="item" style="margin-top:10px">
+						<div>
+							<div style="font-weight:700">Emergency Kit Setup</div>
+							<div style="color:#2c3e33;font-size:14px">Completed 1 week ago</div>
+						</div>
+						<div style="color:#0a7f46;font-weight:800">+120 points</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card pad">
+					<div class="row" style="gap:8px;color:#0a7f46;font-weight:700;margin-bottom:10px">
+						<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12M6 8h12M6 8c0 4 3 7 7 7H6m7 0 5 5"/></svg>
+						<span>Insurance Savings</span>
+					</div>
+					<div class="row row-between" style="margin:8px 0">
+						<span>Previous Premium:</span>
+						<span style="text-decoration:line-through;color:var(--gray-2)">₹12,000</span>
+					</div>
+					<div class="row row-between" style="margin:8px 0">
+						<span>Current Premium:</span>
+						<span style="color:#0a7f46;font-weight:800">₹8,500</span>
+					</div>
+					<div class="hr"></div>
+					<div class="row row-between" style="margin:8px 0">
+						<span style="font-weight:700">Annual Savings:</span>
+						<span style="color:#0a7f46;font-weight:800;font-size:20px">₹3,500</span>
+					</div>
+					<button class="btn" type="button" style="background:#fff;color:#0a7f46;border:1px solid #bfe8ca;margin-top:10px">View Savings Details</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Emergency Readiness Dashboard -->
+		<div class="card" style="margin-top:24px">
+			<div class="card pad">
+				<div class="row" style="gap:8px;color:#0a7f46;font-weight:700;margin-bottom:14px">
+					<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg>
+					<span>Emergency Readiness Dashboard</span>
+				</div>
+
+				<div class="grid grid-3" style="text-align:center">
+					<div>
+						<div style="font-size:34px;font-weight:800;color:#0a7f46;margin:6px 0">Low</div>
+						<div>Flood Risk</div>
+						<div style="color:#2c3e33;font-size:14px">Previously: High</div>
+					</div>
+					<div>
+						<div style="font-size:34px;font-weight:800;color:#0a7f46;margin:6px 0">Low</div>
+						<div>Fire Risk</div>
+						<div style="color:#2c3e33;font-size:14px">Previously: Medium</div>
+					</div>
+					<div>
+						<div style="font-size:34px;font-weight:800;color:#0a7f46;margin:6px 0">High</div>
+						<div>Structural Safety</div>
+						<div style="color:#2c3e33;font-size:14px">Previously: Medium</div>
+					</div>
+				</div>
+
+				<div class="hr"></div>
+				<div class="row row-between">
+					<div class="row" style="gap:8px">
+						<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/></svg>
+						<span style="font-weight:700">Safe Home Certification</span>
+					</div>
+					<span class="badge" style="background:#e8f9ee;border-color:#bfe8ca">Level 2 Certified</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- CTA -->
+		<div class="center" style="padding:28px 0">
+			<h3 style="font-size:22px;margin:0 0 8px">Ready to boost your safety score?</h3>
+			<p style="color:#2c3e33;margin-bottom:16px">Every upgrade makes your family safer — and your insurance cheaper.</p>
+			<button class="btn" type="button" style="max-width:340px;margin:0 auto;display:inline-flex">Boost My Score Now</button>
+		</div>
+	</div>
+</body>
+</html> 

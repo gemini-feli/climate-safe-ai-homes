@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile - Climate Safe AI Homes</title>
+  <link rel="stylesheet" href="./css/profile.css" />
+</head>
+<body>
+  <!-- Header --> 
+  <header class="navbar">
+    <div class="logo-section">
+      <img src="./images/ClimaNest.jpeg" alt="Logo" class="logo" />
+      <h1>ClimaNest</h1>
+      <span class="tagline">Safer surrounding, safer lives. Building Climate resilient communities</span>
+    </div>
+    
+    <div class="nav-icons">
+      <img src="./images/settings.jpg" alt="Settings" title="Settings" class="nav-icon"/>
+      <div class="icon-badge">
+        <img src="./images/bell.jpg" alt="Alerts" title="Alerts" class="nav-icon"/>
+        <span class="badge-dot"></span>
+      </div>
+      <img src="./images/refresh.jpg" alt="Refresh" title="Refresh" class="nav-icon"/>
+      <img src="./images/logout.jpg" alt="Logout" title="Logout" class="nav-icon"/>
+    </div>
+  </header>
+
+  <!-- Welcome Section -->
+  <section class="welcome-card">
+    <img src="./images/user.jpg" alt="User Icon" class="user-icon" />
+    <div>
+      <h2>Welcome, <span id="userName">User</span>!</h2>
+      <p>Your AI-powered climate-safe solutions</p>
+      <div class="badges">
+        <span class="badge verified">Verified</span>
+        <span class="badge protected">Climate Protected</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Climatic Alerts -->
+  <section class="alert-card">
+    <h3><img src="./images/alert.jpg" alt="Alert" /> Climatic Alerts</h3>
+    <ul id="alertsList">
+      <!-- Alerts will be injected dynamically from backend -->
+    </ul>
+    <a href="#" class="view-all">+ View all alerts</a>
+  </section>
+
+  <!-- Current Location & Weather -->
+  <section class="location-card">
+    <h3>Current Location</h3>
+    <p>
+      <img src="./images/location.jpg" alt="Location" />
+      <span id="locationName">Loading...</span> 
+      (<span id="locationCoords">--</span>)
+    </p>
+    <div class="weather-info">
+      <div class="main-weather">
+        <h1 id="temperature">--°C</h1>
+        <span id="condition">--</span>
+      </div>
+      <div class="weather-details">
+        <p id="humidity">Humidity: --%</p>
+        <p id="wind">Wind: --</p>
+        <p id="extra">Rainfall: -- mm</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Home Safety Stats -->
+  <section class="safety-stats">
+    <div class="stat green"><strong>98%</strong><br>Climate Safety</div>
+    <div class="stat blue"><strong>24/7</strong><br>AI Monitoring</div>
+    <div class="stat yellow"><strong>5</strong><br>Safety Features</div>
+    <div class="stat purple"><strong>100%</strong><br>Verified</div>
+  </section>
+
+  <!-- Quick Actions -->
+  <!-- Quick Actions -->
+<section class="quick-actions">
+  <div class="action" onclick="window.location.href='chat.html'">
+    <img src="./images/ai chat.jpg" alt="AI Chat" />
+    <h4>Rescue buddy AI chatbot</h4>
+    <p>Get personalized safety advice from our AI</p>
+  </div>
+
+  <div class="action"  onclick="navigateToMap()">
+
+    <img src="./images/2nd home.jpg" alt="Safe Home Hub" />
+    <h4>Community Resilience Map</h4>
+    <p>Explore all safety features and solutions</p>
+  </div>
+
+  <div class="action" onclick="window.location.href='safety.html'">
+    <img src="./images/subsidies.jpg" alt="Subsidies" />
+    <h4>Safe hub</h4>
+    <p>Discover available grants and rewards</p>
+  </div>
+
+  <a href="safety boost.html" style="text-decoration: none; color: inherit;">
+    <div class="action">
+      <div class="action-icon orange">
+        <img src="./images/safetyboost.jpeg" alt="Safety Boost" />
+      </div>
+      <h4>Safety Boost</h4>
+      <p>Safer resilience dashboard</p>
+    </div>
+  </a>
+</section>
+
+  <!-- Recent Activity -->
+  <section class="recent-activity">
+    <h3>Recent Activity</h3>
+    <ul>
+      <li><img src="./images/detection.jpg" alt="Activity" /> AI detected and fixed a potential climate risk in your surrounding <span>2 hours ago</span></li>
+      <li><img src="./images/school.jpg" alt="Activity" /> Added new climate-resistant feature <span>Yesterday</span></li>
+      <li><img src="./images/chat.jpg" alt="Activity" /> Chatted with AI about flood protection options <span>2 days ago</span></li>
+    </ul>
+  </section>
+
+ <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+
+<!-- Your Firebase setup scripts -->
+<script src="./js/firebase-config.js"></script>
+<script type="module" src="js/firebase-notifications.js"></script>
+
+
+<!-- Your app logic -->
+<script type="module" src="./js/index.js"></script>
+
+</body>
+</html>

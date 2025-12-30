@@ -1,0 +1,324 @@
+/* Background */
+.climate-page {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #e0f2f1, #b2dfdb);
+  color: #064e3b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header */
+.climate-header {
+  text-align: center;
+  margin-bottom: 20px;
+  max-width: 800px;
+}
+.climate-header h1 {
+  font-size: 2.2rem;
+  margin: 10px 0;
+  color: #064e3b;
+}
+.climate-header p {
+  color: #047857;
+  font-size: 1rem;
+}
+.header-icon {
+  width: 60px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Main Box */
+.climate-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 1000px;
+  width: 100%;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+.climate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.upload-section, .concern-section {
+  display: flex;
+  flex-direction: column;
+}
+.upload-section h2, .concern-section h2 {
+  font-size: 1.3rem;
+  color: #064e3b;
+  display: flex;
+  align-items: center;
+}
+.upload-section .subtext, .concern-section .subtext {
+  font-size: 0.9rem;
+  color: #059669;
+  margin-bottom: 15px;
+}
+.icon {
+  width: 20px;
+  margin-right: 8px;
+}
+.icon-small {
+  width: 16px;
+  margin-right: 6px;
+}
+
+/* Upload Box */
+.upload-drop {
+  border: 2px dashed #34d399;
+  border-radius: 10px;
+  padding: 40px 20px;
+  text-align: center;
+}
+.upload-icon {
+  width: 40px;
+  margin-bottom: 10px;
+}
+.browse a {
+  color: #059669;
+  font-weight: bold;
+  text-decoration: none;
+}
+.browse a:hover {
+  text-decoration: underline;
+}
+
+/* Info */
+.info {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+.info-icon {
+  width: 16px;
+  margin-right: 8px;
+}
+.info p {
+  font-size: 0.85rem;
+  color: #047857;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.form-group input, 
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #a7f3d0;
+  border-radius: 6px;
+  outline: none;
+}
+.form-group input:focus, 
+.form-group textarea:focus {
+  border-color: #34d399;
+  box-shadow: 0 0 0 2px #6ee7b7;
+}
+
+/* Checkbox */
+.form-check {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.form-check input {
+  margin-right: 8px;
+}
+
+/* Button */
+.submit-btn {
+  background: #10b981;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.submit-btn img {
+  width: 18px;
+  margin-right: 6px;
+}
+.submit-btn:hover {
+  background: #059669;
+}
+
+/* Decorative icons */
+.leaf-icon {
+  position: absolute;
+  opacity: 0.7;
+}
+.top-left {
+  top: 10px;
+  left: 10px;
+  width: 40px;
+}
+.bottom-right {
+  bottom: 40px;
+  right: 40px;
+  width: 60px;
+}
+/* Header main icon */
+.header-icon {
+  width: 80px;   /* was 60px */
+}
+
+/* Section titles (Upload / Concerns) */
+.icon {
+  width: 28px;   /* was 20px */
+}
+
+/* Small icons inside labels */
+.icon-small {
+  width: 22px;   /* was 16px */
+}
+
+/* Cloud upload icon */
+.upload-icon {
+  width: 60px;   /* was 40px */
+}
+
+/* Info small icon */
+.info-icon {
+  width: 22px;   /* was 16px */
+}
+
+/* Button AI icon */
+.submit-btn img {
+  width: 24px;   /* was 18px */
+}
+img.icon, img.icon-small, .upload-icon, .info-icon, .submit-btn img {
+  width: 32px;
+}
+
+/* Prompt Examples Section */
+.prompt-section {
+  background: #f9fafb;
+  padding: 40px 20px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+.prompt-header h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+.prompt-icon {
+  width: 28px;
+  margin-right: 8px;
+}
+
+.prompt-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .prompt-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.prompt-card {
+  background: #fff;
+  border: 2px solid #34d399;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.prompt-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.prompt-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #111827;
+}
+.prompt-card p {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+.upload-drop {
+  border: 2px dashed #aaa;
+  padding: 30px;
+  text-align: center;
+  border-radius: 12px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+/* Highlight when dragging files */
+.upload-drop.dragover {
+  background: #eef7ff;
+  border-color: #3b82f6;
+}
+
+.file-preview {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Existing styles above remain same... */
+
+/* Chat Box */
+.chat-box {
+  margin-top: 20px;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 15px;
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+}
+
+.chat-message {
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin: 8px 0;
+  max-width: 75%;
+  word-wrap: break-word;
+}
+
+.chat-message.user {
+  background: #10b981;
+  color: white;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chat-message.ai {
+  background: #e5e7eb;
+  color: #111827;
+  align-self: flex-start;
+  text-align: left;
+}

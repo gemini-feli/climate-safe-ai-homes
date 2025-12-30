@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+openweather:
+  api:
+    key: 150d22647ee643cfbb363001253008
+
+alerts:
+  scheduler:
+    interval:
+      minutes: 60

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Providers · SafeScore Boost</title>
+	<style>
+		:root{
+			--green:#06c167; --green-700:#079e55; --green-800:#0a7f46;
+			--line:#bfe8ca; --soft:#f6fff9; --ink:#0f172a; --muted:#2c3e33;
+			--card:#ffffff; --radius:18px;
+			--shadow:0 1px 2px rgba(0,0,0,.04),0 8px 18px rgba(4,120,87,.06);
+		}
+		*{box-sizing:border-box}
+		body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:#fff;color:var(--ink)}
+		.container{max-width:1180px;margin:0 auto;padding:28px 18px}
+		a{text-decoration:none;color:inherit}
+		h1{font-size:34px;margin:0 0 6px}
+		h2{font-size:24px;margin:0 0 12px}
+		p{margin:0 0 10px;color:var(--muted)}
+		.row{display:flex;align-items:center}
+		.row-between{justify-content:space-between}
+		.grid{display:grid;gap:18px}
+		.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+		@media (max-width:860px){.grid-2{grid-template-columns:1fr}}
+		.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+		.pad{padding:20px}
+		.badge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;color:var(--green-800);background:#fff}
+		.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border:0;border-radius:12px;background:var(--green);color:#fff;font-weight:800;cursor:pointer}
+		.btn:hover{background:var(--green-700)}
+		.link{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff}
+		.nav{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 18px}
+		.nav a{border:1px solid var(--line);padding:8px 12px;border-radius:999px}
+		.section{margin-top:22px}
+		/* target visibility */
+		.block{display:none}
+		:target.block{display:block}
+		/* pay modal (css-only) */
+		.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:.2s}
+		.modal:target{opacity:1;pointer-events:auto}
+		.sheet{max-width:640px;width:100%;background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden}
+		.sheet-h{display:flex;align-items:center;justify-content:space-between;background:#fbfffd;border-bottom:1px solid var(--line);padding:14px 18px}
+		.sheet-b{padding:16px 18px}
+		.sheet-f{padding:14px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+		.close{border:1px solid var(--line);padding:8px 12px;border-radius:10px;background:#fff}
+		label{font-weight:700;color:#173425;font-size:14px}
+		input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#fff;color:#0f172a}
+		.form{display:grid;gap:12px}
+		.row2{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+		@media(max-width:560px){.row2{grid-template-columns:1fr}}
+		.summary{border:1px solid var(--line);border-radius:12px;background:#fbfffd;padding:12px;margin-top:10px}
+		.total{font-size:18px;color:var(--green-800);font-weight:800}
+		.headerbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+		.back{border:1px solid var(--line);padding:8px 12px;border-radius:10px;background:#fff}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="headerbar">
+			<div>
+				<h1>Find Providers & Pay</h1>
+				<p>Select a category below. This page shows sample providers and a quick payment UI.</p>
+			</div>
+			<a class="back" href="safety boost.html">← Back to dashboard</a>
+		</div>
+
+		<div class="nav">
+			<a href="#plumbing">Plumbing</a>
+			<a href="#electrical">Electrical</a>
+			<a href="#fire">Fire Safety</a>
+			<a href="#structural">Structural</a>
+			<a href="#kits">Emergency Kits</a>
+		</div>
+
+		<!-- Plumbing -->
+		<div id="plumbing" class="block">
+			<h2>Plumbing</h2>
+			<div class="grid grid-2">
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">QuickFlow Plumbing</h3>
+
+					<p>4.8★ · Same‑day service · 6‑month warranty</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=plumbers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.indiamart.com/search/mpsearch?ss=plumber" target="_blank" rel="noopener">Find on IndiaMART</a>
+					</div>
+					<a class="btn" href="#pay-plumbing">Proceed to Pay</a>
+				</div>
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">DrainPro Services</h3>
+					<p>4.6★ · Leak fix & installation · Verified staff</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=plumbers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.sulekha.com/plumbers" target="_blank" rel="noopener">Find on Sulekha</a>
+					</div>
+					<a class="btn" href="#pay-plumbing">Proceed to Pay</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Electrical -->
+		<div id="electrical" class="block section">
+			<h2>Electrical</h2>
+			<div class="grid grid-2">
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">WireSafe Auditors</h3>
+					<p>4.9★ · Full safety audit · Detailed report</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=electricians" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.indiamart.com/search.mp?ss=electrician" target="_blank" rel="noopener">Find on IndiaMART</a>
+					</div>
+					<a class="btn" href="#pay-electrical">Proceed to Pay</a>
+				</div>
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">VoltCare Electric</h3>
+					<p>4.7★ · Repairs & MCBs · Quick response</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=electricians" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.sulekha.com/electricians" target="_blank" rel="noopener">Find on Sulekha</a>
+					</div>
+					<a class="btn" href="#pay-electrical">Proceed to Pay</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Fire -->
+		<div id="fire" class="block section">
+			<h2>Fire Safety</h2>
+			<div class="grid grid-2">
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">FlameGuard Systems</h3>
+					<p>4.8★ · Extinguishers · Alarms · Training</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=fire%20extinguisher%20dealers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.indiamart.com/search.mp?ss=fire+extinguisher" target="_blank" rel="noopener">Find on IndiaMART</a>
+					</div>
+					<a class="btn" href="#pay-fire">Proceed to Pay</a>
+				</div>
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">SafeFire Tech</h3>
+					<p>4.7★ · Installation & AMC · Certified</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=fire%20extinguisher%20dealers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.sulekha.com/fire-extinguisher-dealers" target="_blank" rel="noopener">Find on Sulekha</a>
+					</div>
+					<a class="btn" href="#pay-fire">Proceed to Pay</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Structural -->
+		<div id="structural" class="block section">
+			<h2>Structural</h2>
+			<div class="grid grid-2">
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">StructSure Engineers</h3>
+					<p>4.9★ · Foundation/wall audits · Report</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=structural%20engineers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.indiamart.com/search.mp?ss=structural+engineer" target="_blank" rel="noopener">Find on IndiaMART</a>
+					</div>
+					<a class="btn" href="#pay-structural">Proceed to Pay</a>
+				</div>
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">BuildCheck Labs</h3>
+					<p>4.7★ · Seepage/Crack analysis</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=structural%20engineers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.sulekha.com/structural-engineers" target="_blank" rel="noopener">Find on Sulekha</a>
+					</div>
+					<a class="btn" href="#pay-structural">Proceed to Pay</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Kits -->
+		<div id="kits" class="block section">
+			<h2>Emergency Kits</h2>
+			<div class="grid grid-2">
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">ReadyHome Supplies</h3>
+					<p>4.8★ · Family kits · School/office packs</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=emergency%20kit" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.indiamart.com/search.mp?ss=emergency+kit" target="_blank" rel="noopener">Find on IndiaMART</a>
+					</div>
+					<a class="btn" href="#pay-kits">Proceed to Pay</a>
+				</div>
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">PrepBox India</h3>
+					<p>4.7★ · Customizable kits</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=emergency%20kit" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.sulekha.com/emergency-kits-dealers" target="_blank" rel="noopener">Find on Sulekha</a>
+					</div>
+					<a class="btn" href="#pay-kits">Proceed to Pay</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- PAY MODALS (CSS-only demo) -->
+		<div id="pay-plumbing" class="modal">
+			<div class="sheet">
+				<div class="sheet-h"><strong>Pay · Plumbing</strong><a class="close" href="#">Close</a></div>
+				<div class="sheet-b">
+					<div class="form">
+						<label>Package</label><select><option>Leak Fix — ₹1,500</option><option>Blocked Drain — ₹1,200</option></select>
+						<label>Payment method</label><select><option>UPI</option><option>Card</option><option>Netbanking</option></select>
+						<div class="summary"><div class="row row-between"><span>Total</span><span class="total">₹1,785</span></div><p style="margin-top:6px">Includes our commission + taxes.</p></div>
+					</div>
+				</div>
+				<div class="sheet-f"><a class="btn" href="#">Pay Now</a><a class="close" href="#">Cancel</a></div>
+			</div>
+		</div>
+
+		<div id="pay-electrical" class="modal">
+			<div class="sheet"><div class="sheet-h"><strong>Pay · Electrical</strong><a class="close" href="#">Close</a></div>
+			<div class="sheet-b"><div class="form"><label>Package</label><select><option>Safety Audit — ₹2,500</option></select><label>Payment</label><select><option>UPI</option><option>Card</option></select><div class="summary"><div class="row row-between"><span>Total</span><span class="total">₹2,975</span></div></div></div></div><div class="sheet-f"><a class="btn" href="#">Pay Now</a><a class="close" href="#">Cancel</a></div></div>
+		</div>
+
+		<div id="pay-fire" class="modal">
+			<div class="sheet"><div class="sheet-h"><strong>Pay · Fire Safety</strong><a class="close" href="#">Close</a></div>
+			<div class="sheet-b"><div class="form"><label>Package</label><select><option>Extinguisher Install — ₹2,000</option></select><label>Payment</label><select><option>UPI</option><option>Card</option></select><div class="summary"><div class="row row-between"><span>Total</span><span class="total">₹2,380</span></div></div></div></div><div class="sheet-f"><a class="btn" href="#">Pay Now</a><a class="close" href="#">Cancel</a></div></div>
+		</div>
+
+		<div id="pay-structural" class="modal">
+			<div class="sheet"><div class="sheet-h"><strong>Pay · Structural</strong><a class="close" href="#">Close</a></div>
+			<div class="sheet-b"><div class="form"><label>Package</label><select><option>Foundation & Walls — ₹3,000</option></select><label>Payment</label><select><option>UPI</option><option>Card</option></select><div class="summary"><div class="row row-between"><span>Total</span><span class="total">₹3,570</span></div></div></div></div><div class="sheet-f"><a class="btn" href="#">Pay Now</a><a class="close" href="#">Cancel</a></div></div>
+		</div>
+
+		<div id="pay-kits" class="modal">
+			<div class="sheet"><div class="sheet-h"><strong>Pay · Emergency Kits</strong><a class="close" href="#">Close</a></div>
+			<div class="sheet-b"><div class="form"><label>Kit</label><select><option>Family of 4 — ₹3,499</option></select><label>Payment</label><select><option>UPI</option><option>Card</option></select><div class="summary"><div class="row row-between"><span>Total</span><span class="total">₹3,989</span></div></div></div></div><div class="sheet-f"><a class="btn" href="#">Pay Now</a><a class="close" href="#">Cancel</a></div></div>
+		</div>
+	</div>
+</body>
+</html> 
+	<style>
+		:root{
+			--green:#06c167; --green-700:#079e55; --green-800:#0a7f46;
+			--line:#bfe8ca; --soft:#f6fff9; --ink:#0f172a; --muted:#2c3e33;
+			--card:#ffffff; --radius:18px;
+			--shadow:0 1px 2px rgba(0,0,0,.04),0 8px 18px rgba(4,120,87,.06);
+		}
+		*{box-sizing:border-box}
+		body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:#fff;color:var(--ink)}
+		.container{max-width:1180px;margin:0 auto;padding:28px 18px}
+		a{text-decoration:none;color:inherit}
+		h1{font-size:34px;margin:0 0 6px}
+		h2{font-size:24px;margin:0 0 12px}
+		p{margin:0 0 10px;color:var(--muted)}
+		.row{display:flex;align-items:center}
+		.row-between{justify-content:space-between}
+		.grid{display:grid;gap:18px}
+		.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+		@media (max-width:860px){.grid-2{grid-template-columns:1fr}}
+		.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+		.pad{padding:20px}
+		.badge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;color:var(--green-800);background:#fff}
+		.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border:0;border-radius:12px;background:var(--green);color:#fff;font-weight:800;cursor:pointer}
+		.btn:hover{background:var(--green-700)}
+		.link{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff}
+		.nav{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 18px}
+		.nav a{border:1px solid var(--line);padding:8px 12px;border-radius:999px}
+		.section{margin-top:22px}
+		/* target visibility */
+		.block{display:none}
+		:target.block{display:block}
+		/* pay modal (css-only) */
+		.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:.2s}
+		.modal:target{opacity:1;pointer-events:auto}
+		.sheet{max-width:640px;width:100%;background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden}
+		.sheet-h{display:flex;align-items:center;justify-content:space-between;background:#fbfffd;border-bottom:1px solid var(--line);padding:14px 18px}
+		.sheet-b{padding:16px 18px}
+		.sheet-f{padding:14px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+		.close{border:1px solid var(--line);padding:8px 12px;border-radius:10px;background:#fff}
+		label{font-weight:700;color:#173425;font-size:14px}
+		input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#fff;color:#0f172a}
+		.form{display:grid;gap:12px}
+		.row2{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+		@media(max-width:560px){.row2{grid-template-columns:1fr}}
+		.summary{border:1px solid var(--line);border-radius:12px;background:#fbfffd;padding:12px;margin-top:10px}
+		.total{font-size:18px;color:var(--green-800);font-weight:800}
+		.headerbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+		.back{border:1px solid var(--line);padding:8px 12px;border-radius:10px;background:#fff}
+	</style>
+</head>
+<body>
+
+		
+
+		<!-- Plumbing -->
+		<div id="plumbing" class="block">
+			<h2>Plumbing</h2>
+			<div class="grid grid-2">
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">QuickFlow Plumbing</h3>
+
+					<p>4.8★ · Same‑day service · 6‑month warranty</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=plumbers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.indiamart.com/search/mpsearch?ss=plumber" target="_blank" rel="noopener">Find on IndiaMART</a>
+					</div>
+					<a class="btn" href="#pay-plumbing">Proceed to Pay</a>
+				</div>
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">DrainPro Services</h3>
+					<p>4.6★ · Leak fix & installation · Verified staff</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=plumbers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.sulekha.com/plumbers" target="_blank" rel="noopener">Find on Sulekha</a>
+					</div>
+					<a class="btn" href="#pay-plumbing">Proceed to Pay</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Electrical -->
+		<div id="electrical" class="block section">
+			<h2>Electrical</h2>
+			<div class="grid grid-2">
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">WireSafe Auditors</h3>
+					<p>4.9★ · Full safety audit · Detailed report</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=electricians" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.indiamart.com/search.mp?ss=electrician" target="_blank" rel="noopener">Find on IndiaMART</a>
+					</div>
+					<a class="btn" href="#pay-electrical">Proceed to Pay</a>
+				</div>
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">VoltCare Electric</h3>
+					<p>4.7★ · Repairs & MCBs · Quick response</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=electricians" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.sulekha.com/electricians" target="_blank" rel="noopener">Find on Sulekha</a>
+					</div>
+					<a class="btn" href="#pay-electrical">Proceed to Pay</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Fire -->
+		<div id="fire" class="block section">
+			<h2>Fire Safety</h2>
+			<div class="grid grid-2">
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">FlameGuard Systems</h3>
+					<p>4.8★ · Extinguishers · Alarms · Training</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=fire%20extinguisher%20dealers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.indiamart.com/search.mp?ss=fire+extinguisher" target="_blank" rel="noopener">Find on IndiaMART</a>
+					</div>
+					<a class="btn" href="#pay-fire">Proceed to Pay</a>
+				</div>
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">SafeFire Tech</h3>
+					<p>4.7★ · Installation & AMC · Certified</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=fire%20extinguisher%20dealers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.sulekha.com/fire-extinguisher-dealers" target="_blank" rel="noopener">Find on Sulekha</a>
+					</div>
+					<a class="btn" href="#pay-fire">Proceed to Pay</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Structural -->
+		<div id="structural" class="block section">
+			<h2>Structural</h2>
+			<div class="grid grid-2">
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">StructSure Engineers</h3>
+					<p>4.9★ · Foundation/wall audits · Report</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=structural%20engineers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.indiamart.com/search.mp?ss=structural+engineer" target="_blank" rel="noopener">Find on IndiaMART</a>
+					</div>
+					<a class="btn" href="#pay-structural">Proceed to Pay</a>
+				</div>
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">BuildCheck Labs</h3>
+					<p>4.7★ · Seepage/Crack analysis</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=structural%20engineers" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.sulekha.com/structural-engineers" target="_blank" rel="noopener">Find on Sulekha</a>
+					</div>
+					<a class="btn" href="#pay-structural">Proceed to Pay</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Kits -->
+		<div id="kits" class="block section">
+			<h2>Emergency Kits</h2>
+			<div class="grid grid-2">
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">ReadyHome Supplies</h3>
+					<p>4.8★ · Family kits · School/office packs</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=emergency%20kit" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.indiamart.com/search.mp?ss=emergency+kit" target="_blank" rel="noopener">Find on IndiaMART</a>
+					</div>
+					<a class="btn" href="#pay-kits">Proceed to Pay</a>
+				</div>
+				<div class="card pad">
+					<h3 style="margin:0 0 6px">PrepBox India</h3>
+					<p>4.7★ · Customizable kits</p>
+					<div class="nav">
+						<a class="link" href="https://www.justdial.com/search?type=emergency%20kit" target="_blank" rel="noopener">Find on Justdial</a>
+						<a class="link" href="https://www.sulekha.com/emergency-kits-dealers" target="_blank" rel="noopener">Find on Sulekha</a>
+					</div>
+					<a class="btn" href="#pay-kits">Proceed to Pay</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- PAY MODALS (CSS-only demo) -->
+		<div id="pay-plumbing" class="modal">
+			<div class="sheet">
+				<div class="sheet-h"><strong>Pay · Plumbing</strong><a class="close" href="#">Close</a></div>
+				<div class="sheet-b">
+					<div class="form">
+						<label>Package</label><select><option>Leak Fix — ₹1,500</option><option>Blocked Drain — ₹1,200</option></select>
+						<label>Payment method</label><select><option>UPI</option><option>Card</option><option>Netbanking</option></select>
+						<div class="summary"><div class="row row-between"><span>Total</span><span class="total">₹1,785</span></div><p style="margin-top:6px">Includes our commission + taxes.</p></div>
+					</div>
+				</div>
+				<div class="sheet-f"><a class="btn" href="#">Pay Now</a><a class="close" href="#">Cancel</a></div>
+			</div>
+		</div>
+
+		<div id="pay-electrical" class="modal">
+			<div class="sheet"><div class="sheet-h"><strong>Pay · Electrical</strong><a class="close" href="#">Close</a></div>
+			<div class="sheet-b"><div class="form"><label>Package</label><select><option>Safety Audit — ₹2,500</option></select><label>Payment</label><select><option>UPI</option><option>Card</option></select><div class="summary"><div class="row row-between"><span>Total</span><span class="total">₹2,975</span></div></div></div></div><div class="sheet-f"><a class="btn" href="#">Pay Now</a><a class="close" href="#">Cancel</a></div></div>
+		</div>
+
+		<div id="pay-fire" class="modal">
+			<div class="sheet"><div class="sheet-h"><strong>Pay · Fire Safety</strong><a class="close" href="#">Close</a></div>
+			<div class="sheet-b"><div class="form"><label>Package</label><select><option>Extinguisher Install — ₹2,000</option></select><label>Payment</label><select><option>UPI</option><option>Card</option></select><div class="summary"><div class="row row-between"><span>Total</span><span class="total">₹2,380</span></div></div></div></div><div class="sheet-f"><a class="btn" href="#">Pay Now</a><a class="close" href="#">Cancel</a></div></div>
+		</div>
+
+		<div id="pay-structural" class="modal">
+			<div class="sheet"><div class="sheet-h"><strong>Pay · Structural</strong><a class="close" href="#">Close</a></div>
+			<div class="sheet-b"><div class="form"><label>Package</label><select><option>Foundation & Walls — ₹3,000</option></select><label>Payment</label><select><option>UPI</option><option>Card</option></select><div class="summary"><div class="row row-between"><span>Total</span><span class="total">₹3,570</span></div></div></div></div><div class="sheet-f"><a class="btn" href="#">Pay Now</a><a class="close" href="#">Cancel</a></div></div>
+		</div>
+
+		<div id="pay-kits" class="modal">
+			<div class="sheet"><div class="sheet-h"><strong>Pay · Emergency Kits</strong><a class="close" href="#">Close</a></div>
+			<div class="sheet-b"><div class="form"><label>Kit</label><select><option>Family of 4 — ₹3,499</option></select><label>Payment</label><select><option>UPI</option><option>Card</option></select><div class="summary"><div class="row row-between"><span>Total</span><span class="total">₹3,989</span></div></div></div></div><div class="sheet-f"><a class="btn" href="#">Pay Now</a><a class="close" href="#">Cancel</a></div></div>
+		</div>
+	</div>
+</body>
+</html> 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>I²IT Resilience Map — Interactive Edit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+  <link rel="stylesheet" href="css/map.css"/>
+</head>
+<body>
+  <h2>🌍 Community Resilience Map — Edit Mode</h2>
+
+  <div id="top-controls">
+    <label for="categorySelect">Category:</label>
+    <select id="categorySelect">
+      <option value="fire">🔴 Fire Extinguisher / High-risk (marker)</option>
+      <option value="exit">🟢 Exit Route (polyline)</option>
+      <option value="exit-start">🟢 Exit Start (marker)</option>
+      <option value="assembly">🟡 Assembly Zone (polygon)</option>
+      <option value="flood">🔵 Flood Zone (polygon)</option>
+    </select>
+
+    <button id="exportJsonBtn">⬇️ Export JSON</button>
+    <button id="clearAllBtn">🗑️ Clear All (local)</button>
+    <span class="hint">Tip: switch to <b>Satellite</b> base layer for precise building placement.</span>
+  </div>
+
+  <!-- Location Indicator -->
+  <div id="locationIndicator" class="location-indicator" style="display: none;">
+    <span class="location-icon">📍</span>
+    <span id="currentLocationText">Loading location...</span>
+  </div>
+
+  <div id="map"></div>
+
+  <div id="legend" class="legend">
+    <b>Legend</b>
+    <div class="legend-row">
+      <span class="legend-swatch" style="background:#e10600;border-color:#9a0000"></span>
+      Fire extinguishers & high-risk fire points
+    </div>
+    <div class="legend-row">
+      <span class="legend-line" style="background:#17a34a;height:8px;width:28px;border-radius:3px;display:inline-block"></span>
+      Fire exit routes (with arrows)
+    </div>
+    <div class="legend-row">
+      <span class="legend-swatch" style="background:#ffd84d;border-color:#d4b030"></span>
+      Safe assembly zones
+    </div>
+    <div class="legend-row">
+      <span class="legend-swatch" style="background:#4da3ff;border-color:#2f7ad6"></span>
+      Waterlogged / flood-prone areas
+    </div>
+  </div>
+
+  <!-- JS libs -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+  <script src="https://unpkg.com/leaflet-polylinedecorator@1.7.0/dist/leaflet.polylineDecorator.min.js"></script>
+
+  <script src="js/map.js"></script>
+</body>
+</html>

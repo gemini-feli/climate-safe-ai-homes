@@ -1,0 +1,72 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+.env
+src/main/resources/firebase-config.json
+backend/python_service/.env.txt
+
+# Ignore large ML / data files
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.joblib
+*.pkl
+
+# Ignore large datasets
+*.csv
+*.tsv
+*.parquet
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Ignore logs & binaries
+*.log
+*.exe
+*.dll
+# Environment files (secrets)
+.env
+.env.*
+*.env
+*.env.txt
+# Firebase
+src/main/resources/firebase-config.json
+!src/main/resources/firebase-config.sample.json
+# Large datasets
+data/
+datasets/
+

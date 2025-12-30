@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+h2 {
+  margin: 8px 12px;
+  font-weight: 600;
+}
+
+#top-controls {
+  position: relative;
+  margin: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#top-controls select, #top-controls button {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+#top-controls .hint {
+  margin-left: 8px;
+  color: #444;
+  font-size: 13px;
+}
+
+#map {
+  height: 78vh;
+  width: 100%;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.legend {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  background: #ffffff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  font-size: 14px;
+  line-height: 1.3;
+  z-index: 999;
+}
+
+.legend b { display:block; margin-bottom:6px; }
+.legend-row { display:flex; align-items:center; gap:8px; margin:6px 0; }
+.legend-swatch { width:14px; height:14px; border-radius:3px; border:2px solid #999; display:inline-block; }
+.legend-line { width:24px; height:4px; border-radius:2px; display:inline-block; }
+
+.leaflet-container .leaflet-control-layers {
+  max-height: 220px;
+}
+
+
+/* small responsive tweaks */
+@media (max-width:600px) {
+  #top-controls { font-size: 13px; gap:6px; }
+  #map { height: 75vh; }
+  .location-indicator {
+    top: 70px;
+    right: 8px;
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+}
+/* Location Indicator */
+.location-indicator {
+  position: fixed;
+  top: 80px;
+  right: 16px;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 12px;
+  z-index: 1000;
+  border: 1px solid #ddd;
+  max-width: 200px;
+}
+
+.location-indicator .location-icon {
+  color: #4CAF50;
+  margin-right: 4px;
+}

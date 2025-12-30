@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+/* Left image section */
+.image-section {
+  flex: 1;
+  background: url('../images/Login.jpeg') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4); /* Dark overlay for contrast */
+}
+
+.image-text {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.image-text h1 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.image-text p {
+  margin: 10px 0;
+}
+
+.image-text span {
+  font-size: 14px;
+}
+
+/* Right form section */
+.form-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f8fa;
+}
+
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+.welcome-text {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.subtitle-text {
+  text-align: center;
+  font-size: 14px;
+  color: #555; /* lighter grey tone */
+  margin-bottom: 20px;
+}
+
+
+
+.login-box h2 {
+  margin-bottom: 20px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.forgot-btn {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  margin-top: 10px;
+}

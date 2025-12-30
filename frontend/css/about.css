@@ -1,0 +1,264 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* HEADER */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.header nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.header nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+.header nav a.active,
+.header nav a:hover {
+  color: #16a34a;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-primary {
+  padding: 0.5rem 1.2rem;
+  background: #16a34a;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #15803d;
+}
+
+/* ABOUT HERO */
+
+.hero-about {
+  background: linear-gradient(135deg, #f9fafb, #e5f4ee); /* subtle gradient */
+  color: #111;
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.hero-about .hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-about h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+.hero-about p {
+  font-size: 1.2rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+
+/* MISSION */
+
+/* MISSION SECTION */
+.mission {
+  background: #f9fafb;
+  padding: 5rem 2rem;
+}
+
+.mission-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.mission-text {
+  flex: 0.8;   /* text takes less space */
+  text-align: left;
+}
+
+.mission-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.mission-text p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+.mission-banner {
+  flex: 1.2;   /* image takes more space */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mission-banner img {
+  width: 100%;
+  max-width: 650px;  /* bigger than before */
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .mission-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .mission-text {
+    text-align: center;
+  }
+  .mission-banner {
+    justify-content: center;
+  }
+  .mission-banner img {
+    max-width: 100%;
+  }
+}
+
+
+
+
+/* FEATURES */
+.features {
+  padding: 5rem 2rem;
+  background: #fff;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-card {
+  background: #f9fafb;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.feature-icon img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  background: #16a34a;
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* FOOTER */
+.footer {
+  background: #111827;
+  color: #d1d5db;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.footer p {
+  margin-bottom: 1.2rem;
+  color: #9ca3af;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.social-links a {
+  color: #d1d5db;
+  font-size: 1.3rem;
+  transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+  color: #16a34a;
+}

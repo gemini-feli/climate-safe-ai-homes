@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>ResQsathi — Organization Resilience Dashboard</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root{
+			--bg:#f7f7fb;
+			--card:#ffffff;
+			--ink:#0f1221;
+			--muted:#6b6f7a;
+			--line:#e8e9ee;
+			--shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(15,18,33,.06);
+			--radius:14px;
+			--red:#b91c1c; --red-50:#fee2e2;
+			--amber:#92400e; --amber-50:#fef3c7;
+			--indigo:#3730a3; --indigo-50:#eef2ff;
+			--green:#166534; --green-50:#dcfce7;
+			--dark:#111827;
+		}
+		*{box-sizing:border-box}
+		body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+		.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+		/* Header */
+		.header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+		.header-inner{display:flex;align-items:center;justify-content:space-between;padding:20px}
+		.brand{display:flex;align-items:center;gap:12px}
+		.logo{width:28px;height:28px;border-radius:8px;background:transparent}
+		.brand b{font-size:20px}
+		.brand small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+		.role{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
+		.segmented{display:inline-grid;grid-auto-flow:column;gap:6px;background:#f3f4f6;padding:4px;border-radius:999px}
+		.segmented button{border:0;background:transparent;padding:6px 12px;border-radius:999px;font-weight:700;color:var(--ink);cursor:pointer}
+		.segmented button.active{background:var(--dark);color:#fff}
+
+		main{padding:28px 0}
+		.grid{display:grid;grid-template-columns:340px 1fr;gap:22px}
+		@media (max-width: 980px){.grid{grid-template-columns:1fr}}
+
+		.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+		.section-title{padding:18px 18px 0 18px;font-weight:800}
+		.section-body{padding:16px 18px 18px 18px}
+
+		/* Left panel orgs */
+		.org-card{padding:16px;border:1px solid var(--line);border-radius:12px;margin-bottom:14px;background:#fff}
+		.org-head{display:flex;align-items:center;justify-content:space-between}
+		.kicker{font-size:12px;color:var(--muted);background:#f3f4f6;padding:3px 8px;border-radius:999px}
+		.progress{margin:12px 0 10px;height:8px;background:#ececf3;border-radius:999px;overflow:hidden}
+		.progress > span{display:block;height:100%;background:#4972e4}
+		.meta{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted)}
+		.score{font-weight:800;background:#111827;color:#fff;padding:2px 8px;border-radius:999px}
+
+		/* Report bar */
+		.report-bar{padding:16px 18px;border-bottom:1px solid var(--line);display:flex}
+		.btn{display:inline-flex;align-items:center;gap:10px;background:#0f1221;color:#fff;border:0;padding:12px 16px;border-radius:12px;font-weight:800;cursor:pointer}
+		.btn::before{content:"+";font-size:18px;line-height:1}
+
+		/* Issue feed */
+		.issue{padding:18px;border:1px solid var(--line);border-radius:14px;margin:18px;background:#fff}
+		.issue-head{display:flex;align-items:center;gap:12px;justify-content:space-between}
+		.issue-title{font-weight:800;font-size:18px}
+		.badges{display:flex;gap:8px}
+		.badge{font-size:12px;font-weight:800;padding:6px 10px;border-radius:999px;background:#f3f4f6;color:#111827;text-transform:lowercase}
+		.badge.high,.badge.critical{background:var(--red-50);color:var(--red)}
+		.badge.medium{background:var(--amber-50);color:var(--amber)}
+		.badge.open{background:var(--red-50);color:var(--red)}
+		.badge.progress{background:#e0ecff;color:#1d4ed8}
+		.badge.resolved{background:var(--green-50);color:var(--green)}
+		.issue-sub{margin-top:10px;color:var(--muted);font-size:13px;display:flex;gap:16px;flex-wrap:wrap}
+		.issue-body{margin-top:12px;color:#2a2f3a}
+		.tags{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+		.tag{font-size:12px;background:var(--indigo-50);color:var(--indigo);padding:6px 10px;border-radius:999px;font-weight:800}
+
+		/* Modal */
+		.modal-backdrop{position:fixed;inset:0;background:rgba(15,18,33,.35);display:none;align-items:flex-start;justify-content:center;padding:24px;overflow:auto;z-index:50}
+		.modal{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);max-width:960px;width:100%;margin-top:24px}
+		.modal .title{display:flex;align-items:center;gap:10px;color:#b45309;font-weight:700;padding:18px}
+		.form{padding:0 18px 18px 18px}
+		.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+		@media (max-width: 800px){.grid-2{grid-template-columns:1fr}}
+		label{font-size:13px;font-weight:600}
+		.input, .select, .textarea{width:100%;background:#f3f4f6;border:0;outline:0;border-radius:12px;padding:12px 12px;font-size:14px}
+		.textarea{min-height:140px;resize:vertical}
+		.actions{display:flex;gap:10px;margin-top:14px}
+		.primary{background:#0f1221;color:#fff;border:0;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer}
+		.secondary{background:#f3f4f6;color:#111827;border:0;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer}
+		.helper{font-size:12px;color:var(--muted);margin-top:8px}
+		.required::after{content:" *";color:#ef4444}
+	</style>
+</head>
+<body>
+	<header class="header">
+		<div class="header-inner container">
+			<div class="brand">
+				<div class="logo"></div>
+				<div>
+					<b>ResQSaathi</b>
+					<small>Organization Resilience Dashboard</small>
+				</div>
+			</div>
+			<div class="role">
+				<span>Role:</span>
+				<div class="segmented" role="tablist" aria-label="role switch">
+					<button id="role-student" class="active" type="button">Student</button>
+					<button id="role-teacher" type="button">Teacher</button>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main class="container">
+		<div class="grid">
+			<!-- Left column -->
+			<aside class="card">
+				<h3 class="section-title">Organization Resilience Scores</h3>
+				<div class="section-body" id="org-list"></div>
+			</aside>
+
+			<!-- Right column -->
+			<section class="card">
+				<div class="report-bar">
+					<button id="open-form" class="btn" type="button">Report Infrastructure Issue</button>
+				</div>
+				<div class="section-body" style="padding-top:0">
+					<h3 class="section-title" style="padding-left:0">Recent Infrastructure Issues</h3>
+					<div id="feed"></div>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<!-- Modal: Report Issue -->
+	<div id="modal" class="modal-backdrop" aria-hidden="true">
+		<div class="modal">
+			<div class="title">⚠️ Report Infrastructure Issue</div>
+			<form id="issue-form" class="form" novalidate>
+				<div class="grid-2">
+					<div>
+						<label class="required">Issue Title</label>
+						<input id="f-title" class="input" placeholder="Brief description of the issue" required />
+					</div>
+					<div>
+						<label class="required">Organization</label>
+						<select id="f-org" class="select" required>
+							<option value="">Select organization</option>
+						</select>
+					</div>
+					<div>
+						<label class="required">Issue Category</label>
+						<select id="f-category" class="select" required>
+							<option value="">Select category</option>
+							<option value="emergency-exits">Emergency Exits</option>
+							<option value="fire-safety">Fire Safety</option>
+							<option value="structural">Structural</option>
+							<option value="other">Other</option>
+						</select>
+					</div>
+					<div>
+						<label class="required">Severity Level</label>
+						<select id="f-severity" class="select" required>
+							<option value="">Select severity</option>
+							<option value="low">low</option>
+							<option value="medium">medium</option>
+							<option value="high">high</option>
+							<option value="critical">critical</option>
+						</select>
+					</div>
+				</div>
+
+				<div style="margin-top:14px">
+					<label>Location</label>
+					<input id="f-location" class="input" placeholder="Specific location within the organization" />
+				</div>
+
+				<div style="margin-top:14px">
+					<label class="required">Description</label>
+					<textarea id="f-description" class="textarea" placeholder="Detailed description of the infrastructure issue and how it affects disaster preparedness..." required></textarea>
+				</div>
+
+				<div class="actions">
+					<button class="primary" type="submit">Submit Report</button>
+					<button id="cancel-form" class="secondary" type="button">Cancel</button>
+				</div>
+				<div class="helper">Fields marked with * are required.</div>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		// State
+		let userRole = 'student';
+
+		const orgs = [
+			{ id:'roosevelt-high', name:'Roosevelt High School', tag:'school', score:85, updated:'2024-01-15', issues:3 },
+			{ id:'jefferson-elementary', name:'Jefferson Elementary', tag:'school', score:72, updated:'2024-01-14', issues:7 },
+			{ id:'state-university', name:'State University', tag:'college', score:91, updated:'2024-01-16', issues:2 },
+			{ id:'community-college', name:'Community College', tag:'college', score:68, updated:'2024-01-13', issues:5 },
+		];
+
+		let issues = [
+			{
+				id:'1',
+				title:'Blocked Emergency Exit in West Wing',
+				description:'The emergency exit in the west wing is blocked by storage equipment. This could prevent safe evacuation during emergencies and poses a significant safety risk.',
+				category:'emergency-exits',
+				organization:'roosevelt-high',
+				severity:'high',
+				location:'West Wing, 2nd Floor',
+				author:'student',
+				timestamp:'2024-01-15T10:30:00Z',
+				status:'open'
+			},
+			{
+				id:'2',
+				title:'Fire Extinguisher Missing in Chemistry Lab',
+				description:'The fire extinguisher that should be located near the chemistry lab entrance is missing. This creates a major safety hazard given the use of chemicals and heat sources in this area.',
+				category:'fire-safety',
+				organization:'state-university',
+				severity:'critical',
+				location:'Science Building, Room 204',
+				author:'teacher',
+				timestamp:'2024-01-14T14:15:00Z',
+				status:'in-progress'
+			},
+			{
+				id:'3',
+				title:'Cracked Foundation in Gymnasium',
+				description:'There are visible cracks in the gymnasium foundation walls. During severe weather or seismic events, this could compromise the structural integrity of the building.',
+				category:'structural',
+				organization:'jefferson-elementary',
+				severity:'medium',
+				location:'Main Gymnasium',
+				author:'teacher',
+				timestamp:'2024-01-13T09:20:00Z',
+				status:'open'
+			}
+		];
+
+		// Elements
+		const feedEl = document.getElementById('feed');
+		const orgListEl = document.getElementById('org-list');
+		const modalEl = document.getElementById('modal');
+		const openBtn = document.getElementById('open-form');
+		const cancelBtn = document.getElementById('cancel-form');
+		const formEl = document.getElementById('issue-form');
+		const orgSelect = document.getElementById('f-org');
+		const roleStudent = document.getElementById('role-student');
+		const roleTeacher = document.getElementById('role-teacher');
+
+		// Populate org list and select
+		function renderOrgs(){
+			orgListEl.innerHTML = '';
+			orgs.forEach(o => {
+				const div = document.createElement('div');
+				div.className = 'org-card';
+				div.innerHTML = `
+					<div class="org-head">
+						<div class="org-name">${o.name}</div>
+						<span class="kicker">${o.tag}</span>
+					</div>
+					<div class="progress"><span style="width:${o.score}%"></span></div>
+					<div class="meta">
+						<span>Updated: ${o.updated} • ${o.issues} active issues</span>
+						<span class="score">${o.score}/100</span>
+					</div>
+				`;
+				orgListEl.appendChild(div);
+			});
+
+			orgSelect.innerHTML = '<option value="">Select organization</option>' + orgs.map(o => `<option value="${o.id}">${o.name}</option>`).join('');
+		}
+
+		// Render issue feed
+		function renderFeed(){
+			feedEl.innerHTML = '';
+			issues.forEach(i => {
+				const sevClass = i.severity === 'critical' || i.severity === 'high' ? 'high' :
+					i.severity === 'medium' ? 'medium' : '';
+				const statusClass = i.status === 'open' ? 'open' : i.status === 'resolved' ? 'resolved' : 'progress';
+				const card = document.createElement('article');
+				card.className = 'issue';
+				card.innerHTML = `
+					<div class="issue-head">
+						<div class="issue-title">${i.title}</div>
+						<div class="badges">
+							<span class="badge ${sevClass || i.severity}">${i.severity}</span>
+							<span class="badge ${statusClass}">${i.status}</span>
+						</div>
+					</div>
+					<div class="issue-sub">
+						<span class="small">${i.author}</span>
+						<span>•</span>
+						<span class="small">${new Date(i.timestamp).toLocaleString()}</span>
+						<span>•</span>
+						<span class="small">${i.location || ''}</span>
+					</div>
+					<p class="issue-body">${i.description}</p>
+					<div class="tags">
+						<span class="tag">${i.category.replace('-', ' ')}</span>
+						<span class="tag">${(orgs.find(o=>o.id===i.organization)?.name || i.organization)}</span>
+					</div>
+				`;
+				feedEl.appendChild(card);
+			});
+		}
+
+		// Modal controls
+		function openModal(){ modalEl.style.display = 'flex'; modalEl.setAttribute('aria-hidden', 'false'); }
+		function closeModal(){ modalEl.style.display = 'none'; modalEl.setAttribute('aria-hidden', 'true'); formEl.reset(); }
+
+		openBtn.addEventListener('click', openModal);
+		cancelBtn.addEventListener('click', closeModal);
+		modalEl.addEventListener('click', (e)=>{ if(e.target === modalEl) closeModal(); });
+		window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+		// Role switch
+		roleStudent.addEventListener('click', () => {
+			userRole = 'student'; roleStudent.classList.add('active'); roleTeacher.classList.remove('active');
+		});
+		roleTeacher.addEventListener('click', () => {
+			userRole = 'teacher'; roleTeacher.classList.add('active'); roleStudent.classList.remove('active');
+		});
+
+		// Submit form
+		formEl.addEventListener('submit', (e)=>{
+			e.preventDefault();
+			const title = document.getElementById('f-title').value.trim();
+			const organization = document.getElementById('f-org').value;
+			const category = document.getElementById('f-category').value;
+			const severity = document.getElementById('f-severity').value;
+			const location = document.getElementById('f-location').value.trim();
+			const description = document.getElementById('f-description').value.trim();
+
+			if(!title || !organization || !category || !severity || !description){
+				alert('Please fill all required fields.');
+				return;
+			}
+
+			const newIssue = {
+				id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+				title, description, category, organization, severity, location,
+				author: userRole, timestamp: new Date().toISOString(), status:'open'
+			};
+			issues = [newIssue, ...issues];
+			renderFeed();
+			closeModal();
+		});
+
+		// Init
+		renderOrgs();
+		renderFeed();
+	</script>
+</body>
+</html>
